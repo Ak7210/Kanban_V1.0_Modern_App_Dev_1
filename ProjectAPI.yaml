@@ -1,0 +1,587 @@
+openapi: 3.0.0
+info:
+  title: Kanban API 
+  description: >
+    <h3> Course Table Schema </h3> 
+    <table>
+      <thead>
+        <th>Column Name</th>
+        <th>Column Type</th>
+        <th>Constraints</th>
+      </thead>
+      <tbody>
+        <td>user_id</td>
+        <td>Integer</td>
+        <td>Primary Key, Auto Incremen</td>
+      </tr>
+
+      <tr>
+        <td>Name</td>
+        <td>String</td>
+        <td>Not Null</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>String</td>
+        <td>Unique, Not Null</td>
+      </tr>      
+      <tr>
+        <td>Password</td>
+        <td>String</td>
+        <td></td>
+      </tr>         
+    </tbody>
+    </table>
+  
+    <h3> List Table schema </h3> 
+    <table>
+      <thead>
+        <th>Column Name</th>
+        <th>Column Type</th>
+        <th>Constraints</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>list_id</td>
+        <td>Integer</td>
+        <td>Primary Key, Auto Increment</td>
+      </tr>
+      <tr>
+        <td>list_name</td>
+        <td>String</td>
+        <td>Not Null</td>
+      </tr>
+      <tr>
+        <td>user_id</td>
+        <td>Integer</td>
+        <td>Foreign Key (user.user_id),Not Null</td>
+      </tr>      
+    </tbody>
+    </table>
+  
+  
+    <h3> Cards Table Schema </h3> 
+    <table>
+      <thead>
+        <th>Column Name</th>
+        <th>Column Type</th>
+        <th>Constraints</th>
+      </thead>
+      <tbody>
+      <tr>
+        <td>card_id</td>
+        <td>Integer</td>
+        <td>Primary Key, Auto Increment</td>
+      </tr>
+      <tr>
+        <td>card_title</td>
+        <td>string</td>
+        <td>Not Null</td>
+      </tr>
+      <tr>
+        <td>card_description</td>
+        <td>text</td>
+        <td>Not Null</td>
+      </tr>
+      <tr>
+        <td>Dead line</td>
+        <td>Date</td>
+        <td>Not Null</td>
+      </tr>
+      <tr>
+        <td>card creation date</td>
+        <td>Datetime</td>
+        <td>Not Null</td>
+      </tr>
+      <tr>
+        <td>card last update datetime</td>
+        <td>Datetime</td>
+        <td>Not Null</td>
+      </tr>
+      <tr>
+        <td>list_belongs_to</td>
+        <td>Integer</td>
+        <td>Foreign Key(list.list_id), Not Null</td>
+      </tr>
+      <tr>
+        <td>Task Completed or Not</td>
+        <td>Boolean</td>
+      </tr>
+    </tbody>
+    </table>
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:5000/
+paths:
+  /api/list/{list_name}/{email}:
+    description: End point to read, update and delete a list details.
+    get:
+      description: Operation to Read list.
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+            example: shivansh@gmail.com
+        - in: path
+          name: list_name
+          required: true
+          schema:
+            type: string
+            example: Maths
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: list object
+                type: object
+                properties:
+                  list_id:
+                    type: integer
+                    example: 10
+                  list_name:
+                    type: string
+                    example: Maths
+                  user_id:
+                    type: integer
+                    example: 1
+        
+                  
+        '404':
+          description: Not found
+
+    put:
+      description: Operation to update the list details.
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+            example: shivansh@gmail.com
+        - in: path
+          name: list_name
+          required: true
+          schema:
+            type: string
+            example: Maths
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                list_name:
+                  type: string
+                  example: Maths
+      responses:
+        '200':
+          description: Successfuly updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  list_id:
+                    type: integer
+                    example: 10
+                  list_name:
+                    type: string
+                    example: Maths
+                  user_id:
+                    type: integer
+                    example: 10
+                    
+        '409':
+          description: Already exists
+          
+        '404':
+          description: list not found
+          
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+    delete:
+      description: Operation to delete the list.
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+            example: shivansh@gmail.com
+        - in: path
+          name: list_name
+          required: true
+          schema:
+            type: string
+            example: Maths
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description: list not found
+
+  /api/list/{email}:
+    description: End point to create course resource
+    post:
+      description: Operation to create the course resource
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+            example: shivansh@gmail.com
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                list_name:
+                  type: string
+                  example: Maths
+      responses:
+        '200':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  list_id:
+                    type: integer
+                    example: 10
+                  list_name:
+                    type: string
+                    example: Maths
+                  user_id:
+                    type: integer
+                    example: 10
+        '409':
+          description: List name already exists
+        
+        '404':
+          description: User not found
+
+  /api/card/{card_title}/{list_name}/{email}:
+    description: Url to read, update and delete the Cards.
+    get:
+      description: Operation to read Card
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+            example: shivansh@gmail.com
+        - in: path
+          name: list_name
+          required: true
+          schema:
+            type: string
+            example: Maths
+        - in: path
+          name: card_title
+          required: true
+          schema:
+            type: string
+            example: chapter_1
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: card object
+                type: object
+                properties:
+                  card_id:
+                    type: integer
+                    example: 10
+                  card_title:
+                    type: string
+                    example: chapter_1
+                  content:
+                    type: string
+                    example: here we have to type
+                  dead_line:
+                    type: string
+                    example: 2022-09-07
+                  task_completed_or_not:
+                    type: boolean
+                    example: True or False
+                  card_creation_date:
+                    type: string
+                    example: 2022-09-07 12:48:04.064832
+                  last_update:
+                    type: string
+                    example: 2022-09-07 12:48:04.064832
+                  task_completion_date_time:
+                    type: string
+                    example: 2022-09-07 12:48:04.064832
+                  list_belongs_to:
+                    type: integer
+                    example: 10
+        '404':
+          description: Not found
+
+    put:
+      description: Operation to update the Card.
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+            example: Mohan@gmail.com
+        - in: path
+          name: list_name
+          required: true
+          schema:
+            type: string
+            example: Maths
+        - in: path
+          name: card_title
+          required: true
+          schema:
+            type: string
+            example: chapter_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                card_title:
+                  type: string
+                  example: chapter_1
+                card_content:
+                  type: string
+                  example: Here you have to type updated content
+                flag:
+                  type: string
+                  example: "True/true or False/false"
+                
+      responses:
+        '200':
+          description: Successfully updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  card_id:
+                    type: integer
+                    example: 10
+                  card_title:
+                    type: string
+                    example: chapter_1
+                  card_content:
+                    type: string
+                    example: here we have to type
+                  dead_line:
+                    type: string
+                    example: 2022-09-07
+                  task_completed_or_not:
+                    type: boolean
+                    example: True or False
+                  card_creation_date:
+                    type: string
+                    example: 2022-09-07 12:48:04.064832
+                  last_update:
+                    type: string
+                    example: 2022-09-07 12:48:04.064832
+                  task_completion_date_time:
+                    type: string
+                    example: 2022-09-07 12:48:04.064832
+                  list_belongs_to:
+                    type: integer
+                    example: 10
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '409':
+          description: Card title already exists
+        '404':
+          description: Not found
+          
+    delete:
+      description: Operation to delete the card.
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+            example: Mohan@gmail.com
+        - in: path
+          name: list_name
+          required: true
+          schema:
+            type: string
+            example: Maths
+        - in: path
+          name: card_title
+          required: true
+          schema:
+            type: string
+            example: chapter_1
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description: Not found
+
+  /api/card/{list_name}/{email}:
+    description: Url to create student resource
+    post:
+      description: Operation to create the Card
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+            example: shivansh@gmail.com
+        - in: path
+          name: list_name
+          required: true
+          schema:
+            type: string
+            example: Maths
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                card_title:
+                  type: string
+                  example: chapter_1
+                card_content:
+                  type: string
+                  example: Type here details of card.
+                flag:
+                  type: string
+                  example: True/true or False/false
+                dead_line:
+                  type: integer
+                  example: required number of days to complete the task
+                
+      responses:
+        '200':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                title: student object
+                type: object
+                properties:
+                  card_id:
+                    type: integer
+                    example: 10
+                  card_title:
+                    type: string
+                    example: chapter_1
+                  content:
+                    type: string
+                    example: here we have to type
+                  dead_line:
+                    type: string
+                    example: 2022-09-07
+                  task_completed_or_not:
+                    type: boolean
+                    example: True or False
+                  card_creation_date:
+                    type: string
+                    example: 2022-09-07 12:48:04.064832
+                  last_update:
+                    type: string
+                    example: 2022-09-07 12:48:04.064832
+                  task_completion_date_time:
+                    type: string
+                    example: 2022-09-07 12:48:04.064832
+                  list_belongs_to:
+                    type: integer
+                    example: 10
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+        '404':
+          description: Not found
+            
+        '409':
+          description: card title already exist
+          
+  /api/summary/{list_name}/{email}:
+    description: End point to read, update and delete a list details.
+    get:
+      description: Operation to Read list.
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+            example: shivansh@gmail.com
+        - in: path
+          name: list_name
+          required: true
+          schema:
+            type: string
+            example: Maths
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: list object
+                type: object
+                properties:
+                  List name:
+                    type: string
+                    example: Maths
+                  number of tasks completed:
+                    type: integer
+                    example: 5
+                  number of tasks in progress:
+                    type: integer
+                    example: 10
+                  number of deadline crossed tasks:
+                    type: integer
+                    example: 5
+        '404':
+          description: Not found
+
+                    
+    
