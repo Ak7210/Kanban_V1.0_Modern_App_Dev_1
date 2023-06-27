@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update the List</title>
+    <link rel="stylesheet" href="../../static/update_list.css">
+
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <ul class="navbar">      
+                <li class="item">
+                    <a href="/dashboard">Dashboard</a>
+                </li>
+                <li class="item">
+                    <a href="/logout">Logout</a><br>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <div id="flash">
+            {% with messages = get_flashed_messages() %}  
+            {% if messages %}  
+                    {% for message in messages %}  
+                        <h3>{{ message }}</h3>  
+                    {% endfor %}  
+            {% endif %}  
+            {% endwith %}
+        </div>
+        <div class="container">
+            <h1>Update the list</h1>
+            <form method="POST">
+                <div class="list_name">
+                    {{list_form.hidden_tag()}}
+                </div>
+                <div class="list_name">
+                    {{list_form.new_name.label}}<br>
+                    {{list_form.new_name()}}
+                </div>
+                <div class="list_name">
+                    {{list_form.submit()}}
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

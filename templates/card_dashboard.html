@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Cards</title>
+    <link rel="stylesheet" href="../../static/card_dashboard.css">
+    
+
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <ul class="navbar">      
+                <li class="item">
+                    <a href="/dashboard">Dashboard</a>
+                </li>
+                <li class="item">
+                    <a href="/logout">Logout</a><br>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <div class="head">
+            <h1>Summary of the list: {{list.list_name}}</h1>
+        </div>
+        <div class="car">
+            <h1>All cards</h1>
+        </div>
+        <div class="all_cards">
+            {% if card | length !=0 %}
+            <table id="cards">
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Card Creation Date Time</th>
+                    <th>Last Update Date Time</th>
+                    <th>Deadline</th>
+                    <th>Whether completed?</th>
+                    <th>Task Completion Date Time</th>
+                    
+                </tr>
+                {% for cards in card %}
+                
+                <tr>
+                    <td>{{cards.title}}</td>
+                    <td>{{cards.content}}</td>
+                    <td>{{cards.creation_date.strftime("%d %b %Y %H:%M:%S")}}</td>
+                    <td>
+                        {{ moment.include_moment() }}
+                        {{moment(cards.last_update, "YYYY-MM-DD").fromNow(refresh=true)}}
+                    </td>
+                    <td>{{cards.completion_date.strftime('%d %b %Y')}}</td>
+                    <td>
+                        {% if cards.flag == true %}
+                        Yes
+                        {%else%}
+                        No
+                        {%endif%}
+
+                    </td>
+                    <td>
+                        {% if cards.task_completed is none %}
+                            {{cards.task_completed}}
+                        {%else%}
+                        {{cards.task_completed.strftime("%d %b %Y %H:%M:%S")}}
+                        {%endif%}
+                    </td>
+                </tr>
+                {%endfor%}
+            </table>
+            {%else%}
+                <h3>No cards <h3>
+            {%endif%}
+        </div>
+        <div class="car">
+            <h1>To-do cards details</h1>
+        </div>
+        <div class="to_do">
+            {% if to_do | length !=0 %}
+            <table id="to_do">
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Card Creation Date Time</th>
+                    <th>Last Update Date Time</th>
+                    <th>Deadline</th>
+                    <th>Whether completed?</th>
+                    <th>Task Completion Date Time</th>
+                    
+                </tr>
+                {% for cards in to_do %}
+                <tr>
+                    <td>{{cards.title}}</td>
+                    <td>{{cards.content}}</td>
+                    <td>{{cards.creation_date.strftime("%d %b %Y %H:%M:%S")}}</td>
+                    <td>
+                        {{ moment.include_moment() }}
+                        {{moment(cards.last_update, "YYYY-MM-DD").fromNow(refresh=true)}}
+                    </td>
+                    <td>{{cards.completion_date.strftime('%d %b %Y')}}</td>
+                    <td>
+                        {% if cards.flag == true %}
+                        Yes
+                        {%else%}
+                        No
+                        {%endif%}
+
+                    </td>
+                    <td>
+                        {% if cards.task_completed is none %}
+                            {{cards.task_completed}}
+                        {%else%}
+                        {{cards.task_completed.strftime("%d %b %Y %H:%M:%S")}}
+                        {%endif%}
+                    </td>
+                    
+                    
+                </tr>
+                {%endfor%}
+            </table>
+            {%else%}
+                <h3>No cards <h3>
+            {%endif%}
+            
+        </div>
+        <div class="car">
+            <h1>Completed cards details</h1>
+        </div>
+        <div class="complete">
+            {% if complete | length !=0 %}
+            <table id="complete">
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Card Creation Date Time</th>
+                    <th>Last Update Date Time</th>
+                    <th>Deadline</th>
+                    <th>Whether completed?</th>
+                    <th>Task Completion Date Time</th>
+                    
+                </tr>
+                {% for cards in complete %}
+                <tr>
+                    <td>{{cards.title}}</td>
+                    <td>{{cards.content}}</td>
+                    <td>{{cards.creation_date.strftime("%d %b %Y %H:%M:%S")}}</td>
+                    <td>
+                        {{ moment.include_moment() }}
+                        {{moment(cards.last_update, "YYYY-MM-DD").fromNow(refresh=true)}}
+                    </td>
+                    <td>{{cards.completion_date.strftime('%d %b %Y')}}</td>
+                    <td>
+                        {% if cards.flag == true %}
+                        Yes
+                        {%else%}
+                        No
+                        {%endif%}
+
+                    </td>
+                    <td>
+                        {% if cards.task_completed is none %}
+                            {{cards.task_completed}}
+                        {%else%}
+                        {{cards.task_completed.strftime("%d %b %Y %H:%M:%S")}}
+                        {%endif%}
+                    </td>
+                    
+                </tr>
+                {%endfor%}
+            </table>
+            {%else%}
+                <h3>No cards <h3>
+            {%endif%}
+            
+        </div>
+        <div class="car">
+            <h1>Deadline crossed cards</h1>
+        </div>
+        <div class="pending">
+            {% if pending | length !=0 %}
+            <table id="pending">
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Card Creation Date Time</th>
+                    <th>Last Update Date Time</th>
+                    <th>Deadline</th>
+                    <th>Whether completed?</th>
+                    <th>Task Completion Date Time</th>
+                </tr>
+                {% for cards in pending %}
+                <tr>
+                    <td>{{cards.title}}</td>
+                    <td>{{cards.content}}</td>
+                    <td>{{cards.creation_date.strftime("%d %b %Y %H:%M:%S")}}</td>
+                    <td>
+                        {{ moment.include_moment() }}
+                        {{moment(cards.last_update, "YYYY-MM-DD, h:mm:ss").fromNow(refresh=true)}}
+                    </td>
+                    <td>{{cards.completion_date.strftime('%d %b %Y')}}</td>
+                    <td>
+                        {% if cards.flag == true %}
+                        Yes
+                        {%else%}
+                        No
+                        {%endif%}
+
+                    </td>
+                    <td>
+                        {% if cards.task_completed is none %}
+                            {{cards.task_completed}}
+                        {%else%}
+                        {{cards.task_completed.strftime("%d %b %Y %H:%M:%S")}}
+                        {%endif%}
+                    </td>
+                    
+                    
+                </tr>
+                {%endfor%}
+            </table>
+            {% else %}
+            <h3>No cards <h3>
+            {%endif%}
+        </div>
+    </main>
+    
+</body>
+
+
+
+

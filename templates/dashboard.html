@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/dashboard.css">
+    
+</head>
+<body>
+    <header>
+        <div class="navigation">
+            <ul class="navigationbar">      
+                <li class="item">
+                    <a href="/dashboard">Dashboard</a>
+                </li>
+                
+                <li class="item">
+                    <a href="/list">Add List</a>
+                </li>
+                <li class="item">
+                    <a href="/logout">Logout</a><br>
+                </li>
+                <li class="item"><b style="text-align:center;color:peachpuff">Hi {{t}}!</b></li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <div class="flash">
+            {% with messages = get_flashed_messages() %}  
+            {% if messages %}  
+                    {% for message in messages %}  
+                        <h3>{{ message }}</h3>  
+                    {% endfor %}  
+            {% endif %}  
+            {% endwith %}
+        </div>
+        <div class="row row-cols1 row-cols-md-4 justifiy-content-between">
+            {% if list | length !=0 %}
+            {% for list in list %}
+            <div class="card text-black col mb-3 border border-dark" id="list_container" >
+                <div class="card-header" id="list_body">
+                    <span  Style="color:white; font-size:x-large;"><b>{{list.list_name}}</b></span>
+                    <span class="nimu">
+                        <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Actions
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a class="dropdown-item" href="/card/{{list.list_id}}/create_card">Add Card</a></li>
+                        <li> <a class="dropdown-item" href="/list/{{list.list_id}}/update">Update List</a></li> 
+                        <li><a class="dropdown-item" href="/list/{{list.list_id}}/delete">Delete List</a></li>
+                        <li><a class="dropdown-item" href="/card/{{list.list_id}}/move_all_cards">Move all Cards</a></li>
+                        <li><a class="dropdown-item" href="/download/{{list.list_id}}/excel">Download Summary</a></li>
+                        <li><a class="dropdown-item" href="/cards/{{list.list_id}}">Summary in Table</a></li>
+                        <li><a class="dropdown-item" href="/summary/{{list.list_id}}">Summary in Chart</a></li>
+                        </ul>
+                    </span>
+                </div>
+                <div class="card-body" id="list_body"> 
+                    {% if cards | length != 0 %}
+                    {% for card in cards%}
+                    {% if card.list_belongs_to == list.list_id%}
+                    <div calss="all_cards">
+                        {%if card.flag == true %}
+                        <div class="card text-white border-primary mb-3" id="card_container" style="max-width: 25rem; background-color: #0d482c; border-radius: 0.7rem;">
+                            <div class="card-header" id="card_body">
+                                <span Style="color:rgb(255, 255, 255); font-size:23px; font-style: italic;">{{card.title}}</span>
+                                <span class="nimu">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Actions
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a class="dropdown-item" href="/card/{{card.card_id}}/update">Update Card</a></li>
+                                    <li><a class="dropdown-item" href="/card/{{card.card_id}}/move">Move Card</a></li>
+                                    <li> <a class="dropdown-item" href="/card/{{card.card_id}}/delete">Delete Card</a></li> 
+                                    </ul>
+                                </span>
+                            </div>
+                            <div class="card-body" id="card_body">
+                                <h6 style="text-align:center;"><b>Content</b></h6>
+                                <p class="card-text">{{card.content}}<br><br>
+                                <b>Deadline:</b> {{card.completion_date.strftime("%d %b %Y")}}</p>
+                            </div>
+                            <div class="card-footer" id="card_footer">
+                                <small>
+                                    {{ moment.include_moment() }}
+                                    Last update: {{moment(card.last_update, "YYYY-MM-DD, h:mm:ss").fromNow(refresh=true)}}
+                                </small>
+                                <small style="position:relative; float:right">Completed</small>
+                            </div>
+                        </div>
+                        {% elif card.completion_date >= dat%}
+                        <div class="card text-white mb-3" style="max-width: 25rem; background-color: rgb(18 48 82); border-radius: 0.7rem;">
+                            <div class="card-header" id="card_body">
+                                <span Style="color:rgb(255, 255, 255); font-size:23px; font-style: italic;">{{card.title}}</span>
+                                <span class="nimu">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Actions
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a class="dropdown-item" href="/card/{{card.card_id}}/update">Update Card</a></li>
+                                    <li><a class="dropdown-item" href="/card/{{card.card_id}}/move">Move Card</a></li>
+                                    <li> <a class="dropdown-item" href="/card/{{card.card_id}}/delete">Delete Card</a></li> 
+                                    </ul>
+                                </span>
+                            </div>
+                            <div class="card-body" id="card_body">
+                                <h6 style="text-align:center;"><b>Content</b></h6>
+                                <p class="card-text">{{card.content}}<br><br>
+                                <b>Deadline:</b> {{card.completion_date.strftime("%d %b %Y")}}</p>
+                            </div>
+                            <div class="card-footer">
+                                <small>
+                                    {{ moment.include_moment() }}
+                                    Last update: {{moment(card.last_update, "YYYY-MM-DD, h:mm:ss").fromNow(refresh=true)}}
+                                </small>
+                                <small style="position:relative; float:right">In Progress</small>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="card text-white mb-3" style="max-width: 25rem; background-color: #680000e8; border-radius: 0.7rem;">
+                            <div class="card-header" id="card_body">
+                                <span Style="color:rgb(255, 255, 255); font-size:23px; font-style: italic;">{{card.title}}</span>
+                                <span class="nimu">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Actions
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a class="dropdown-item" href="/card/{{card.card_id}}/update">Update Card</a></li>
+                                    <li><a class="dropdown-item" href="/card/{{card.card_id}}/move">Move Card</a></li>
+                                    <li> <a class="dropdown-item" href="/card/{{card.card_id}}/delete">Delete Card</a></li> 
+                                    </ul>
+                                </span>
+                            </div>
+                            <div class="card-body" id="card_body">
+                                <h6 style="text-align:center;"><b>Content</b></h6>
+                                <p class="card-text">{{card.content}}<br><br>
+                                <b>Deadline:</b> {{card.completion_date.strftime("%d %b %Y")}}</p>
+                            </div>
+                            <div class="card-footer" id="card_footer">
+                                <small>
+                                    {{ moment.include_moment() }}
+                                    Last update: {{moment(card.last_update, "YYYY-MM-DD, h:mm:ss").fromNow(refresh=true)}}
+                                </small>
+                                <small style="position:relative; float:right">Deadline Crossed</small>
+                            </div>
+                        </div>
+                        {%endif%}   
+                    </div>
+                    {%endif%}
+                    {%endfor%}
+                    {%endif%}
+                </div>
+            </div>
+            {%endfor%}
+            {%endif%}
+        </div>                    
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
+
+

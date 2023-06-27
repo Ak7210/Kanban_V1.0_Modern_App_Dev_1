@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration page</title>
+    <link rel="stylesheet" href="../static/registration.css">
+</head>
+<body>
+    <main>
+        <div class="flash">
+            {% with messages = get_flashed_messages() %}  
+            {% if messages %}  
+                  {% for message in messages %}  
+                       <h3>{{ message }}</h3>  
+                  {% endfor %}  
+            {% endif %}
+            {% endwith %}
+        </div>      
+        <div  class="container">
+                <h1>Register Yourself</h1>
+            <form method="POST">
+                <div class="registration">
+                    {{register.hidden_tag()}}
+                <div class="registration">
+                    {{register.name.label}}
+                    {{register.name()}}
+                </div>
+                <div class="registration">
+                    {{register.email.label}}
+                    {{register.email()}}
+                </div>
+                <div class="registration">
+                    {{register.password.label}}
+                    {{register.password()}}
+                </div>
+                <div class="registration">
+                    {{register.confirm_password.label}}
+                    {{register.confirm_password()}}
+                </div><br>
+
+                <div class="submit">
+                    {{register.submit()}}
+                </div> 
+            </form>
+            <div class="exists">
+                <a href="/login">Already have an account?</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

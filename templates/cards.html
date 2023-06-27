@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0">
+    <title>Add a Card</title>
+    <link rel="stylesheet" href="../../static/add_cards.css">
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <ul class="navbar">      
+                <li class="item">
+                    <a href="/dashboard">Dashboard</a>
+                </li>
+                <li class="item">
+                    <a href="/logout">Logout</a><br>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <div>
+            {% with messages = get_flashed_messages() %}  
+            {% if messages %}  
+                  {% for message in messages %}  
+                       <h3>{{ message }}</h3>  
+                  {% endfor %}  
+            {% endif %}
+            {% endwith %}
+        </div>
+
+        <div class="container"> 
+            <h1>Add a Card</h1>
+            <div>
+                <form method="POST">
+                    <div class="add_card">
+                        {{cards.hidden_tag()}}
+                    </div><br>
+                    <div class="add_card">
+                        {{cards.title.label}}<br>
+                        {{cards.title()}}
+                    </div><br>
+                    <div class="add_card">
+                        {{cards.content.label}}<br>
+                        {{cards.content()}}
+                    </div><br>
+                    <div class="add_card">
+                        {{cards.completion_date.label}}<br>
+                        {{cards.completion_date()}}
+                    </div><br>
+                    <div class="flag">
+                        {{cards.flag.label}}
+                        {{cards.flag()}}
+                    </div><br>
+                    <div class="add_card">
+                        {{cards.submit()}}
+                    </div><br>
+                </form>
+            </div>
+
+        </div>
+        
+    </main>
+    
+</body>
+</html>

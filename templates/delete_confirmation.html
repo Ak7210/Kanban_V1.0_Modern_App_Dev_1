@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>confirmation page</title>
+    <link rel="stylesheet" href="../../static/delete_list.css">
+
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <ul class="navbar">      
+                <li class="item">
+                    <a href="/dashboard">Dashboard</a>
+                </li>
+                <li class="item">
+                    <a href="/logout">Logout</a><br>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <form method="POST">
+            <h1>Delete List and all Cards!</h1>
+                <div class="flag">
+                    {{form.hidden_tag()}}
+                </div><br>
+                <div class="flag">
+                    {{form.flag.label}}
+                    {{form.flag()}}
+                </div>
+                <div class="flag">
+                    {{form.submit()}}
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
