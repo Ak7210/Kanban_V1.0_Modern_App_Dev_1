@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+}
+
+body{
+
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "Open Sans";
+    color: #fff;
+
+}
+header {
+    background-color: teal;
+}
+.navbar {
+    padding: 1rem 0rem;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    background-color: teal;
+    z-index: 1;
+    top: 0;
+    
+}
+.item{
+    list-style: none;
+    margin-right: 2rem;
+}
+
+.item a{
+    text-decoration: none;
+    color: white; 
+
+}
+.item a:hover{
+    color: black;
+}
+.item:first-child{
+    margin-right: auto;
+    margin-left: 2rem;
+}
+
+main{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: url("register.jpg");
+    background-size: cover;
+    background-position: center center;
+}
+.container{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(19,82,51,0.5));
+    width:450px;
+    padding: 50px 30px;
+    border-radius: 5px;
+    margin-top: 2rem;
+
+}
+h1{
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 1em;
+}
+label{
+    font-size: x-large;
+}
+.new_list input{
+    font-size: medium;
+    width: 95%;
+    display: block;
+    padding: 10px;
+    color: #222;
+    border: none;
+    outline: none;
+    margin: 0.5em 0em;
+}
+.new_list input[type="submit"]{
+    background: #000000;
+    color: #fff;
+    font-size: 1.3em;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+.new_list input[type="submit"]:hover{
+    opacity:1;
+}
+.flash h3{
+    text-align: center;
+    font-size: 27px;
+    margin-top: 80px;
+    color: greenyellow;
+    margin-bottom:-78px;
+}

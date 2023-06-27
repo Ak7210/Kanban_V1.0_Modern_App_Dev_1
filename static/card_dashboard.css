@@ -1,0 +1,147 @@
+*{
+    margin: 0;
+}
+
+body{
+
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "Open Sans";
+    background-color: lavenderblush;
+    margin-top: 5rem;
+    
+}
+main{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+
+}
+
+header {
+    background-color: teal;
+}
+.navbar {
+    box-shadow: 0px 0px 10px var(--clr-grey200);
+    margin: 0 0 0 0;
+    padding: 1rem 0rem;
+    border-radius:round-radius;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 20px;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    background-color: teal;
+    z-index: 1;
+    top: 0;
+  }
+.item{
+    list-style: none;
+    margin-right: 2rem;
+}
+
+.item a{
+    text-decoration: none;
+    color: white; 
+
+}
+.item a:hover{
+    color: black;
+}
+.item:first-child{
+    margin-right: auto;
+    margin-left: 2rem;
+}
+
+
+.pending {
+    padding-bottom: 70px;
+}
+/*========================================================================================*/
+.head{
+    text-align: center;
+    font-size: larger;
+    margin-top: 15px;
+}
+.car{
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+h3{
+    margin-left: 20px;
+}
+
+
+/*====================================================================================*/
+table{
+    border: 1px solid black;
+    margin-left: 20px;
+    min-width: 95%;
+    max-width:95%;
+    word-wrap: normal;
+    
+}
+th, td{
+    border: 1px solid black;
+    width: 100px;
+    
+}
+
+
+/*====================================================================================*/
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    text-align: right;
+    padding-bottom: 10%;
+    
+}
+  
+.dropdown {
+    position: relative;
+    float: right;
+    padding-right: 8px;
+    padding-left: 48px;
+    
+    
+}
+  
+.dropdown-content {
+    font-size: large;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 0%;
+    box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.dropdown-content a {
+    color: black;
+    padding: 5px 8px;
+    text-decoration: none;
+    display: block;
+    z-index: 1;
+}
+  
+.dropdown-content a:hover {background-color: #f1f1f1}
+ 
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+/*=======================================================================*/

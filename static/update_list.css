@@ -1,0 +1,124 @@
+*{
+    margin: 0;
+}
+
+body{
+
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "Open Sans";
+    color: #fff;
+
+}
+header {
+    background-color: teal;
+}
+.navbar {
+    box-shadow: 0px 0px 10px var(--clr-grey200);
+    margin: 0 0 0 0;
+    padding: 1rem 0rem;
+    border-radius:round-radius;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 20px;
+  }
+.item{
+    list-style: none;
+    margin-right: 2rem;
+}
+
+.item a{
+    text-decoration: none;
+    color: white; 
+
+}
+.item a:hover{
+    color: black;
+}
+.item:first-child{
+    margin-right: auto;
+    margin-left: 2rem;
+}
+
+main{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: url("image18.jpg");
+    background-size: cover;
+    background-position: center center;
+}
+.container{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(19,82,51,0.5));
+    width:450px;
+    padding: 50px 30px;
+    border-radius: 5px;   
+}
+h1{
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 1em;
+}
+.list_name input{
+    width: 95%;
+    display: block;
+    padding: 10px;
+    color: #222;
+    border: none;
+    outline: none;
+    margin: 1em 0;
+}
+.list_name input[type="submit"]{
+    background: #000000;
+    color: #fff;
+    font-size: 1.2em;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+.list_name input[type="submit"]:hover{
+    opacity:1;
+}
+#flag {
+    width: 42px;
+    height: 17px; 
+    margin-top: 18px;
+    margin-bottom: 41px;
+}
+#submit{
+    margin-left: 24%;
+    width:217px;
+}
+label{
+    font-size: large;
+}
+.goback button{
+    text-align: center;
+    background: #5f0c0c;
+    color:#bce1e3;
+    font-size: 1.2em;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+.goback button:hover{
+    opacity:1;
+}
+#content{
+    width: 422px;
+    height: 71px;
+    margin-top: 10px;
+}
+#title{
+    width: 89%;
+}
+h3{
+    text-align: center;
+    color: greenyellow;
+    font-size: 27px;
+    margin-top: 33px;
+}

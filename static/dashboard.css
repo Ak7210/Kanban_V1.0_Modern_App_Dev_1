@@ -1,0 +1,101 @@
+body{
+    background: #dcfbfb;
+    overflow: auto;
+}
+header {
+    background-color: teal;
+    font-family: "Open Sans";
+    
+}
+.navigationbar {
+    padding: 1rem 0rem;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    background-color: teal;
+    z-index: 1;
+    top: 0;   
+}
+.item{
+    list-style: none;
+    margin-right: 2rem;
+}
+
+.item a{
+    text-decoration: none;
+    color: white; 
+
+}
+.item a:hover{
+    color: black;
+}
+.item:first-child{
+    margin-right: auto;
+    margin-left: 2rem;
+}
+
+.row.row-cols1.row-cols-md-4.justifiy-content-between {
+    margin-left: 2rem;
+    margin-top: 3rem;
+    margin-right: 0;    
+}
+
+.card.text-black.col.mb-3.border.border-dark#list_container {
+margin-left: 48px;
+margin-top:38px;
+max-height: 600px;
+font-family: -webkit-body;
+min-width: 26.5rem;
+max-width: 27rem;
+padding: 0;
+
+}
+
+.card-header#list_body {
+    background:#000000b8;  
+}
+
+.card-body#list_body{
+    overflow: scroll;
+    background: #e7e5dc59;
+}
+
+.card-body#card_body{
+    overflow: auto;
+    max-height: 140px;
+    background: white;
+    color: black;
+}
+.card-body#card_body b{
+    font-family: cursive;
+}
+
+span.nimu {
+   position: relative;
+   float:right;
+   font-family: serif;  
+}
+.flash h3{
+    text-align: center;
+    font-size: 27px;
+    margin-top: 70px;
+    color: red;
+    margin-bottom:-71px;
+}
+
+.dropdown-menu {
+    padding:0;
+    background-color: #d9d5d5;
+}
+
+.card-footer{
+    padding: 0.2rem 0.6rem;
+}
+
+.btn-secondary{
+    background-color: #848500;
+    border-color: #848500;
+}

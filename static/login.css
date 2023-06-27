@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "Open Sans";
+    color: #fff;
+}
+main{
+    display:flex;
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: url("pic2.jpg");
+    background-size: cover;
+    background-position: center center;
+}
+.form-container{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background: linear-gradient(rgba(65,149,117,0.3), rgba(53,22,61,0.3));
+    width:420px;
+    padding: 50px 30px;
+    border-radius: 10px;
+    box-shadow: 7px 7px 60px #000;
+}
+h1{
+    text-transform: uppercase;
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 2em;
+}
+.control input{
+    width: 100%;
+    display: block;
+    padding: 10px;
+    color: #222;
+    border: none;
+    outline: none;
+    margin: 1em 0;
+}
+.control input[type="submit"]{
+    background: maroon;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+.control input[type="submit"]:hover{
+    opacity:1;
+}
+.forget {
+    text-align: center;
+}
+.forget a{
+    text-decoration: none;
+    color: #fff;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+.forget a:hover {
+    opacity: 1;
+}
+.create {
+    text-align: center;
+}
+.create a{
+    text-decoration: none;
+    color: #fff;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+.create a:hover {
+    opacity: 1;
+}
+h3{
+    text-align: center;
+    color: rgb(11, 11, 11);
+    font-size: 20px;
+}
